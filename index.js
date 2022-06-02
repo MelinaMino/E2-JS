@@ -40,3 +40,34 @@ console.log(`Los precios de todas las pizzas en la carta son:${CostPizza}`);
 //EL NOMBRE DE CADA PIZZA CON SU PRECIO
 const NameValor = PIZZAS.forEach(pizza => PIZZAS.nombre, PIZZAS.precio)
 console.log(`Las pizzas se llaman ${NamePizza} y sus respectivos valores son ${CostPizza}`);
+
+
+//AL TOCAR EL BOTON, CAPTURAR EL VALOR INGRESADO EN EL INPUT
+//RENDERIZAR EN EL H2 EL NOMBRE Y EN EL H4 EL PRECIO DE LA PIZZA CUYO ID COINCIDA CON EL NUM INGRESADO EN EL INPUT
+//SI NO COINCIDE CON NINGUN ID, RENDERIZAR UN MENSAJE ERROR
+
+const buttonSend = document.getElementById('boton');
+const imprimirPant = document.getElementById('numero');
+
+imprimirPant.addEventListener('input', () => {
+    document.getElementById('h2').innerHTML = "";
+    document.getElementById('h4').innerHTML = "";
+});
+
+const tomarValor = () => {
+    const buscaIdPizza = document.getElementById('numero').value;
+    PIZZAS.map((iDP) => {
+        if (iDP.ID == buscaIdPizza) {
+            document.getElementById('h2').innerHTML = `El nombre de la pizza es ${iDP.nombre}`;
+            document.getElementById('h4').innerHTML = `El valor es de $ ${iDP.precio}`;
+        } else if (buscaIdPizza == "") {
+            document.getElementById('h2').innerHTML = 'Ingresa un ID primero';
+            document.getElementById('h4').innerHTML = "";
+            // } else if (!iDP.ID) {
+            //     document.getElementById('h2').innerHTML = 'Ingresa un ID valido';
+            // }
+        };
+    });
+}
+
+buttonSend.addEventListener('click', tomarValor);
