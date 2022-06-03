@@ -56,18 +56,14 @@ imprimirPant.addEventListener('input', () => {
 
 const tomarValor = () => {
     const buscaIdPizza = document.getElementById('numero').value;
-    PIZZAS.map((iDP) => {
-        if (iDP.ID == buscaIdPizza) {
-            document.getElementById('h2').innerHTML = `El nombre de la pizza es ${iDP.nombre}`;
-            document.getElementById('h4').innerHTML = `El valor es de $ ${iDP.precio}`;
-        } else if (buscaIdPizza == "") {
-            document.getElementById('h2').innerHTML = 'Ingresa un ID primero';
-            document.getElementById('h4').innerHTML = "";
-            // } else if (!iDP.ID) {
-            //     document.getElementById('h2').innerHTML = 'Ingresa un ID valido';
-            // }
-        };
-    });
-}
+    const PizzaSelec = PIZZAS.find((pizza) => pizza.ID == buscaIdPizza);
+    if (!PizzaSelec) {
+        document.getElementById('h2').innerHTML = "ID no encontrado";
+        document.getElementById('h4').innerHTML = 'Ingresa un ID valido';
+    } else {
+        document.getElementById('h2').innerHTML = `Tu pizza es ${PizzaSelec.nombre}`;
+        document.getElementById('h4').innerHTML = `El valor es de $ ${PizzaSelec.precio}`
+    }
+};
 
 buttonSend.addEventListener('click', tomarValor);
